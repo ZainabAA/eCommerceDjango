@@ -1,0 +1,61 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <!-- <form action='{% url "newListing" %}' method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <input type='text' name='title' placeholder="Title">
+        </div>
+    
+        <div class="form-group">
+            <textarea name='description' placeholder="Description" cols="40" rows="5"></textarea>
+        </div>
+        
+        <div class="form-group">
+        <input type="number" name="bid" placeholder="Starting Bid">
+        </div>
+        
+        <div class="form-group">
+        <input type="url" name="image" placeholder="Image URL">
+        </div>
+        
+        <div class="form-group">
+            <select name='category'>
+                {% for option in options %}
+                    <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form> -->
+   
+    <form action='{% url "newListing" %}' method='POST'>
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Title </label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+        </div>
+        <div class="form-group">
+            {{ form.description }}
+        </div>
+        <div class="form-group">
+            <label>Starting Bid</label>
+            {{ form.bid }}
+        </div>
+        <div class="form-group">
+            <label>Image URL</label>
+            {{ form.image }}
+        </div>
+        <div class="form-group">
+            <label>Category</label>
+        </div>
+        <div class="form-group">
+            {{ form.category }}
+        </div>
+        <input type="submit" value="Add">
+    </form>
+{% endblock %}

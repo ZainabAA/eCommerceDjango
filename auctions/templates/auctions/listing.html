@@ -1,0 +1,48 @@
+{% extends "auctions/layout.html" %} 
+
+{% block body %}
+    <h3>Listing: {{ listing.title }}</h3>
+    <img src="{{ listing.url }}" />
+    <p>{{ listing.description }}</p>
+    <h4>${{ bid.bid }}</h4>
+    <form method="POST">
+        {% csrf_token %} 
+        {% if listing.id in watchlist %}
+            <input type="submit" name="remove" value="remove from watchlist" />
+        {% else %}
+            <input type="submit" name="add" value="add to watchlist" />
+        {% endif %}
+    </form>
+    <br />
+    <form method="POST">
+        {% csrf_token %}
+        <label>Make a Bid</label>
+        <input
+            type="number"
+            name="bid"
+            min="{{ listing.currentBid }}"
+            step="0.5"
+            placeholder="Your Bid"
+        />
+        <input type="submit" name="newBid" value="Submit Bid" />
+    </form>
+    <br />
+    <form method='POST'>
+        {% csrf_token %}
+        <textarea name='comment' placeholder="Add A Comment" rows="4" cols="30"></textarea>
+        <input type="submit" value="Submit" name="commentBtn" />
+    </form>
+    <br />
+    {% if listing.id in userslistings %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" name="close" value="Close" />
+        </form>
+    {% endif %}
+    <br />
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

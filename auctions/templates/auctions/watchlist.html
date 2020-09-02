@@ -1,0 +1,15 @@
+{% extends 'auctions/layout.html' %}
+{% load ind %}
+
+{% block body %}
+    {% for list in watchlist %}
+        <div>
+            <a href="{% url 'listing' list.id %}">
+                <h3>Listing: {{ list.title }}</h3>
+                <img src="{{ list.url }}" />
+                <p>{{ list.description }}</p>
+                <p>${{ bids|indAt:forloop.counter0 }}</p>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
