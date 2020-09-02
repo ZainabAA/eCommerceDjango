@@ -1,0 +1,23 @@
+{% extends "auctions/layout.html" %}
+{% load ind %}
+{% block body %}
+    {% for listing in listings %}
+    {% if not listing.active %}
+        <h3>You Won: </h3>
+    {% endif %}
+    <div>
+    <a href="{% url 'listing' listing.id %}">
+        <h3>Listing: {{ listing.title }}</h3>
+        <img src="{{ listing.url }}" />
+        <p>{{ listing.description }}</p>
+        <p>${{ bids|indAt:forloop.counter0 }}</p>
+    </a>
+    </div>
+    {% endfor %}
+    
+    <!-- {% for auctionItem in AuctionListing %}
+        <img src='{{auctionItem.image}}'>
+        <h3>{{auctionItem.title}}</h3>
+        <p>{{auctionItem.description}}</p>
+    {% endfor %} -->
+{% endblock %}
