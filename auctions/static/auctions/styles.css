@@ -1,0 +1,16 @@
+body {
+    padding: 10px;
+}
+
+.test {
+    color: cornflowerblue;
+}
+
+p.listing{
+    color: black;
+    background-color: brown;
+}
+
+a.listing:link, a.listing:visited, a.listing:hover, a.listing:active {
+    text-decoration: none;
+}
